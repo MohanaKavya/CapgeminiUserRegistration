@@ -61,6 +61,24 @@ public class UserRegistration {
 			System.out.println("Invalid Email. Try Again");
 		}while(match == false);
 		
+		match = false;
+		sc.nextLine();
+		
+		do {
+		System.out.println("Enter Your Phone Number for User Registration :");
+		String phoneNo = sc.nextLine();
+		
+		String patternPhone = "^[1-9]{1}[0-9]{1} [1-9]{1}[0-9]{9}$";
+		
+		Pattern pattern = Pattern.compile(patternPhone);
+		Matcher m = pattern.matcher(phoneNo);
+		
+		if(m.matches()) 
+				match = true;
+		else
+			System.out.println("Invalid Phone Number. Try Again");
+		}while(match == false);
+		
 	}
 
 }
