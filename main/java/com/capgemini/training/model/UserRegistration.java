@@ -45,6 +45,22 @@ public class UserRegistration {
 			System.out.println("Invalid Last Name. Try Again");
 		}while(match == false);
 		
+		match = false;
+		do {
+		System.out.println("Enter Your Email ID for User Registration :");
+		String email = sc.next();
+		
+		String patternEmail = "^[a-z]{3}(.([a-z]{3}))?@[a-z]{2}.[a-z]{2}(.([a-z]{2}))?$";
+		
+		Pattern pattern = Pattern.compile(patternEmail);
+		Matcher m = pattern.matcher(email);
+		
+		if(m.matches()) 
+				match = true;
+		else
+			System.out.println("Invalid Email. Try Again");
+		}while(match == false);
+		
 	}
 
 }
