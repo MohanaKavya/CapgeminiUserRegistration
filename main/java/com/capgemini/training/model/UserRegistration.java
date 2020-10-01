@@ -79,6 +79,23 @@ public class UserRegistration {
 			System.out.println("Invalid Phone Number. Try Again");
 		}while(match == false);
 		
+		match = false;
+		do {
+		System.out.println("Enter Your Password for User Registration :");
+		String password = sc.next();
+		
+		String patternPassword = "[a-z]{8,}";
+		
+		Pattern pattern = Pattern.compile(patternPassword);
+		Matcher m = pattern.matcher(password);
+		
+		if(m.matches()) 
+				match = true;
+		else
+			System.out.println("Invalid Password. Try Again");
+		}while(match == false);
+		
+		
 	}
 
 }
