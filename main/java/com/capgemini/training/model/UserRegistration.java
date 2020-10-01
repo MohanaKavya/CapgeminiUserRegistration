@@ -28,6 +28,23 @@ public class UserRegistration {
 			System.out.println("Invalid First Name. Try Again");
 		}while(match == false);
 		
+		match = false;
+		
+		do {
+		System.out.println("Enter Your Last Name for User Registration :");
+		String lastName = sc.next();
+		
+		String patternLastName = "^[A-Z]{1}[a-zA-z]{2,}$";
+		
+		Pattern pattern = Pattern.compile(patternLastName);
+		Matcher m = pattern.matcher(lastName);
+		
+		if(m.matches()) 
+				match = true;
+		else
+			System.out.println("Invalid Last Name. Try Again");
+		}while(match == false);
+		
 	}
 
 }
