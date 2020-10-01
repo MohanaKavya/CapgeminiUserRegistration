@@ -84,7 +84,7 @@ public class UserRegistration {
 		System.out.println("Enter Your Password for User Registration :");
 		String password = sc.next();
 		
-		String patternPassword = "^.{8,}$";
+		String patternPassword = "^(?=.*[A-Z]+).{8,}$";
 		
 		Pattern pattern = Pattern.compile(patternPassword);
 		Matcher m = pattern.matcher(password);
