@@ -5,6 +5,43 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
+	
+		private final static String FIRST_NAME_PATTERN = "^[A-Z]{1}[a-zA-z]{2,}$";
+		private final static String LAST_NAME_PATTERN = "^[A-Z]{1}[a-zA-z]{2,}$";
+		private final static String EMAIL_PATTERN = "^[a-z0-9-_\\+]+([\\.][a-z0-9]+)*[\\@]([a-z0-9]{1}|[a-z]{2}|[a-z0-9]{3,})[\\.]([a-z]{2}|[a-z0-9]{3,}|(([a-z]{2}|[a-z0-9]{1}|[a-z0-9]{3,})([\\.][a-z]{2}|[\\.][a-z0-9]{3,})))$";;
+		private final static String PHONE_NUMBER_PATTERN = "^[1-9]{1}[0-9]{1} [1-9]{1}[0-9]{9}$";
+		private final static String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-=_+]).{8,}$";
+		
+		public boolean validateFirstName(String fName) {
+			Pattern pattern = Pattern.compile(FIRST_NAME_PATTERN);
+			Matcher m = pattern.matcher(fName);
+			return m.matches();
+		}
+
+		public boolean validateLastName(String lName) {
+			Pattern pattern = Pattern.compile(LAST_NAME_PATTERN);
+			Matcher m = pattern.matcher(lName);
+			return m.matches();
+		}
+
+		public boolean validateEmail(String email) {
+			Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+			Matcher m = pattern.matcher(email);
+			return m.matches();
+		}
+
+		public boolean validateMobile(String phoneNo) {
+			Pattern pattern = Pattern.compile(PHONE_NUMBER_PATTERN);
+			Matcher m = pattern.matcher(phoneNo);
+			return m.matches();
+		}
+
+		public boolean validatePassword(String password) {
+			Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+			Matcher m = pattern.matcher(password);
+			return m.matches();
+		}
+
 
 	public static void main(String[] args) {
 		boolean match = false;
