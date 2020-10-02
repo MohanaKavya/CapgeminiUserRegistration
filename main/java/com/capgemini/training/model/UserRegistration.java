@@ -50,7 +50,7 @@ public class UserRegistration {
 		System.out.println("Enter Your Email ID for User Registration :");
 		String email = sc.next();
 		
-		String patternEmail = "^[a-z]{3}(.([a-z]{3}))?@[a-z]{2}.[a-z]{2}(.([a-z]{2}))?$";
+		String patternEmail = "^[a-z0-9-_\\+]+([\\.][a-z0-9]+)*[\\@]([a-z0-9]{1}|[a-z]{2}|[a-z0-9]{3,})[\\.]([a-z]{2}|[a-z0-9]{3,}|(([a-z]{2}|[a-z0-9]{1}|[a-z0-9]{3,})([\\.][a-z]{2}|[\\.][a-z0-9]{3,})))$";
 		
 		Pattern pattern = Pattern.compile(patternEmail);
 		Matcher m = pattern.matcher(email);
