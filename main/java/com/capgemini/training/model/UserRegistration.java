@@ -4,6 +4,11 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@FunctionalInterface
+interface Validate {
+	public boolean validateUserDetails(String userDetails);
+}
+
 public class UserRegistration {
 		// Constants
 		private final static String FIRST_NAME_PATTERN = "^[A-Z]{1}[a-zA-z]{2,}$";
@@ -14,91 +19,51 @@ public class UserRegistration {
 		
 		// Validate User's First Name
 		public boolean validateFirstName(String fName) {
-			try {
 			Pattern pattern = Pattern.compile(FIRST_NAME_PATTERN);
 			Matcher m = pattern.matcher(fName);
-			if(m.matches()) {
+			if(m.matches()) 
 				return true;
-			}
-			else {
-				throw new UserInputInvalidException("Invalid First Name"); 
-			}
-			}
-			catch(Exception e) {
-				System.out.println("Exception : "+e.getMessage());
+			else 
 				return false;	
-			}
 		}
 		// Validate User's Last Name
 		public boolean validateLastName(String lName) {
-			try {
 			Pattern pattern = Pattern.compile(LAST_NAME_PATTERN);
 			Matcher m = pattern.matcher(lName);
-			if(m.matches()) {
+			if(m.matches()) 
 				return true;
-			}
-			else {
-				throw new UserInputInvalidException("Invalid Last Name"); 
-			}		
-			} catch (Exception e) {
-				System.out.println("Exception : "+e.getMessage());
+			else 
 				return false;
 			}
-		}
 		// Validate User's Email
 		public boolean validateEmail(String email) {
-			try {
 				Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 				Matcher m = pattern.matcher(email);
-				if(m.matches()) {
+				if(m.matches()) 
 					return true;
-				}
-				else {
-					throw new UserInputInvalidException("Invalid Email"); 
-				}
-			} catch (Exception e) {
-				System.out.println("Exception : "+e.getMessage());
+				else 
 				return false;
-			}		
 		}
 		// Validate User's Phone Number
 		public boolean validateMobile(String phoneNo) {
-			try {
 				Pattern pattern = Pattern.compile(PHONE_NUMBER_PATTERN);
 				Matcher m = pattern.matcher(phoneNo);
 				if(m.matches()) {
 					return true;
 				}
-				else {
-					throw new UserInputInvalidException("Invalid Phone Number"); 
-				}
-				
-			} catch (Exception e) {
-				System.out.println("Exception : "+e.getMessage());
-				return false;
-			}	
+				else 
+				return false;	
 		}
 		// Validate User's Password
 		public boolean validatePassword(String password) {
-			try {
 				Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
 				Matcher m = pattern.matcher(password);
-				if(m.matches()) {
+				if(m.matches()) 
 					return true;
-				}
-				else {
-					throw new UserInputInvalidException("Invalid Password"); 
-				}
-				
-			} catch (Exception e) {
-				System.out.println("Exception : "+e.getMessage());
+				else 
 				return false;
-			}
 		}
-
-
 	public static void main(String[] args) {
-		
 		boolean match = false;
 		UserRegistration user = new UserRegistration();
 		// Display Message
@@ -109,27 +74,36 @@ public class UserRegistration {
 		do {
 		System.out.println("Enter Your First Name for User Registration :");
 		String firstName = sc.next();
-		match = user.validateFirstName(firstName);
-		if(match)
+		Validate firstNameValidation = (fName) -> user.validateFirstName(fName);
+		if(firstNameValidation.validateUserDetails(firstName)) {
 			System.out.println("First Name : "+firstName);
+			break;
+		}
+		else System.out.println("Invalid First Name");
 		}while(match==false);
 		
 		// Last Name User Input
 		do {
 		System.out.println("Enter Your Last Name for User Registration :");
 		String lastName = sc.next();
-		match = user.validateLastName(lastName);
-		if(match)
+		Validate lastNameValidate = (lName) -> user.validateLastName(lName);
+		if(lastNameValidate.validateUserDetails(lastName)) {
 			System.out.println("Last Name : "+lastName);
+			break;
+		}
+		else System.out.println("Invalid Last Name");
 		}while(match==false);
 		
 		// Email User Input
 		do {
 		System.out.println("Enter Your Email ID for User Registration :");
 		String email = sc.next();
-		match = user.validateEmail(email);
-		if(match)
+		Validate emailValidate = (emailId) -> user.validateEmail(emailId);
+		if(emailValidate.validateUserDetails(email)) {
 			System.out.println("Email : "+email);
+			break;
+		}
+		else System.out.println("Invalid Email");
 		}while(match==false);
 
 		sc.nextLine();
@@ -137,20 +111,24 @@ public class UserRegistration {
 		do {
 		System.out.println("Enter Your Phone Number for User Registration :");
 		String phoneNo = sc.nextLine();
-		match = user.validateMobile(phoneNo);
-		if(match)
+		Validate phoneValidate = (phone) -> user.validateMobile(phone);
+		if(phoneValidate.validateUserDetails(phoneNo)) {
 			System.out.println("Phone Number : "+phoneNo);
+			break;
+		}
+		else System.out.println("Invalid Phone Number");
 		}while(match==false);
 		
 		// Password User Input
 		do {
 		System.out.println("Enter Your Password for User Registration :");
 		String password = sc.next();
-		match = user.validatePassword(password);
-		if(match)
+		Validate passwordValidate = (passcode) -> user.validatePassword(passcode);
+		if(passwordValidate.validateUserDetails(password)) {
 			System.out.println("Password : "+password);
-		}while(match==false);
-		
+			break;
+		}
+		else System.out.println("Invalid Password");
+		}while(match==false);	
 	}
-
 }
